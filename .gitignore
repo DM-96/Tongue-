@@ -1,0 +1,11 @@
+# Dipendenze Node
+node_modules/
+
+# Variabili ambiente
+.env
+
+# Build React
+dist/
+
+# Log
+*.log
