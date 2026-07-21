@@ -1,20 +1,23 @@
+require("dotenv").config();
+
+const errorMiddleware = require("./middleware/errorMiddleware");
+
 // Importiamo Express per creare il server
 const express = require("express");
 
 // Importiamo CORS per permettere richieste dal frontend
 const cors = require("cors");
 
+const chatRoutes = require("./routes/chatRoutes");
+
 // Creiamo applicazione Express
 const app = express();
 
-
-// Middleware
-// Permette di leggere JSON nelle richieste
 app.use(express.json());
-
-// Permette richieste da altri domini
 app.use(cors());
 
+// Definiamo le rotte per il chatbot
+app.use("/api/chat", chatRoutes);
 
 // Prima rotta di test
 app.get("/", (req, res) => {
@@ -25,9 +28,10 @@ app.get("/", (req, res) => {
 
 });
 
+app.use(errorMiddleware);
 
 // Porta del server
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 
 // Avvio server
