@@ -2,13 +2,14 @@ const groq = require("../config/groq");
 
 // Estrae la parola chiave principale dalla richiesta dell'utente
 const extractKeyword = async (userMessage) => {
-  const response = await groq.chat.completions.create({
-    model: "llama-3.3-70b-versatile",
+  try {
+    const response = await groq.chat.completions.create({
+      model: "llama-3.3-70b-versatile",
 
-    messages: [
-      {
-        role: "system",
-        content: `
+      messages: [
+        {
+          role: "system",
+          content: `
 Sei un assistente che estrae esclusivamente la parola chiave principale
 dalla richiesta dell'utente.
 Se la richiesta non contiene un argomento specifico,
@@ -32,18 +33,39 @@ Esempi:
 "Parlami di Tesla"
 → Tesla
 `,
-      },
+        },
 
-      {
-        role: "user",
-        content: userMessage,
-      },
-    ],
+        {
+          role: "user",
+          content: userMessage,
+        },
+      ],
 
-    temperature: 0,
-  });
+      temperature: 0,
+    });
 
-  return response.choices[0].message.content.trim();
+    return response.choices[0].message.content.trim();
+  } catch (error) {
+    console.error("Errore Groq Keyword:", error);
+
+    if (error.status === 401) {
+      const err = new Error(
+        "La chiave API dell'intelligenza artificiale non è valida.",
+      );
+
+      err.status = 401;
+
+      throw err;
+    }
+
+    const err = new Error(
+      "Servizio di intelligenza artificiale momentaneamente non disponibile.",
+    );
+
+    err.status = 503;
+
+    throw err;
+  }
 };
 
 module.exports = {

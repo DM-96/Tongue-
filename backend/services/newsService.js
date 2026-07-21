@@ -18,9 +18,19 @@ const getNews = async (query) => {
 
     return response.data.results;
   } catch (error) {
-    const err = new Error("Errore nel recupero delle notizie");
+    if (error.response?.status === 401) {
+      const err = new Error("Errore di configurazione del servizio notizie");
+
+      err.status = 500;
+
+      throw err;
+    }
+
+    const err = new Error("Servizio notizie momentaneamente non disponibile");
 
     err.status = 503;
+
+    throw err;
   }
 };
 

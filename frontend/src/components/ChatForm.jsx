@@ -35,7 +35,7 @@ function ChatForm({ setMessages }) {
     } catch (error) {
       console.error(error);
 
-      setError(error.message);
+      setError(error.userMessage);
     } finally {
       setLoading(false);
     }

@@ -9,22 +9,19 @@ const api = axios.create({
 
 // Intercetta tutte le risposte ricevute dal backend
 api.interceptors.response.use(
-  // Se la risposta è corretta la restituiamo normalmente
   (response) => {
     return response;
   },
 
-  // Se il backend restituisce un errore passa da qui
   (error) => {
     console.error("Errore API:", error.response);
 
-    // Se il backend ha inviato un messaggio
     if (error.response?.data?.message) {
-      error.message = error.response.data.message;
+      error.userMessage = error.response.data.message;
+    } else {
+      error.userMessage = "Si è verificato un errore inatteso";
     }
 
-    // Restituiamo comunque l'errore
-    // così il componente può gestirlo
     return Promise.reject(error);
   },
 );

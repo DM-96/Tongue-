@@ -65,7 +65,7 @@ ${articles}
     // ci interessa solamente il testo generato dall'AI
     return response.choices[0].message.content;
   } catch (error) {
-    const err = new Error("Errore durante la generazione del riassunto");
+    const err = new Error("TEST ERRORE GROQ");
 
     err.status = 500;
 
