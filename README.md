@@ -77,5 +77,5 @@ Successivamente genera un riassunto chiaro e strutturato delle notizie.
 ## Clonare repository
 
 ```bash
-git clone URL_REPOSITORY
+git clone https://github.com/DM-96/Tongue-.git
 ```
