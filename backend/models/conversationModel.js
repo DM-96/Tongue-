@@ -17,7 +17,7 @@ const getConversationHistory = async (limit = 10) => {
         SELECT message, response
         FROM conversations
         ORDER BY created_at DESC
-        LIMIT ?
+        LIMIT ${limit}
     `;
 
   // Recuperiamo le conversazioni
