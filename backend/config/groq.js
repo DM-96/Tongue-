@@ -1,3 +1,4 @@
+// Configurazione del client Groq utilizzando la chiave presente nel file .env
 const Groq = require("groq-sdk");
 
 const groq = new Groq({

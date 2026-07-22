@@ -1,5 +1,5 @@
-// Formatta gli articoli ricevuti dalla News API
-// preparando il testo che verrà inviato al modello AI
+// Converte gli articoli recuperati dal servizio notizie
+// in un testo leggibile dal modello AI
 
 const formatArticles = (articles) => {
   return articles

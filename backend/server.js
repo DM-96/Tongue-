@@ -21,22 +21,18 @@ app.use("/api/chat", chatRoutes);
 
 // Prima rotta di test
 app.get("/", (req, res) => {
-
-    res.json({
-        message: "Tongue API funzionante"
-    });
-
+  res.json({
+    message: "Tongue API funzionante",
+  });
 });
 
+// Middleware globale per la gestione degli errori
 app.use(errorMiddleware);
 
 // Porta del server
 const PORT = process.env.PORT || 3000;
 
-
 // Avvio server
 app.listen(PORT, () => {
-
-    console.log(`Server avviato sulla porta ${PORT}`);
-
+  console.log(`Server avviato sulla porta ${PORT}`);
 });

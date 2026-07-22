@@ -1,6 +1,6 @@
 # 📰 Tongue - AI News Assistant
 
-Tongue è un chatbot basato sull'intelligenza artificiale che permette agli utenti di ottenere rapidamente riassunti delle notizie tramite una semplice richiesta in linguaggio naturale.
+Tongue è un assistente AI che permette agli utenti di ottenere rapidamente riassunti delle notizie tramite richieste in linguaggio naturale.
 
 L'applicazione integra un frontend React, un backend Node.js/Express, un'API per il recupero delle notizie e un modello AI per analizzare e sintetizzare le informazioni.
 
@@ -34,6 +34,7 @@ L'applicazione integra un frontend React, un backend Node.js/Express, un'API per
 - MySQL
 - Axios
 - Dotenv
+- Groq SDK
 
 # 🌐 API Esterne utilizzate
 
@@ -60,11 +61,6 @@ Il modello riceve:
 - il prompt di sistema personalizzato.
 
 Successivamente genera un riassunto chiaro e strutturato delle notizie.
-
-## Servizi esterni
-
-- NewsData.io API
-- Groq API
 
 ## Database
 

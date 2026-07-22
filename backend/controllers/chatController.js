@@ -1,14 +1,16 @@
 const { getNews } = require("../services/newsService");
 const { formatArticles } = require("../services/articleService");
 const { generateSummary } = require("../services/aiService");
-const { saveConversation } = require("../models/conversationModel");
-const { getConversationHistory } = require("../models/conversationModel");
+const {
+  saveConversation,
+  getConversationHistory,
+} = require("../models/conversationModel");
 const { extractKeyword } = require("../services/keywordService");
 
 // Gestisce la richiesta del chatbot Tongue
 const chatController = async (req, res, next) => {
   try {
-    // Recuperiamo il messaggio e la data inviati dall'utente
+    // Recuperiamo il messaggio inviato dall'utente
     const { message } = req.body;
 
     // Controlliamo che i dati obbligatori siano presenti
@@ -43,10 +45,9 @@ const chatController = async (req, res, next) => {
     // Recupera le ultime conversazioni salvate
     const history = await getConversationHistory();
 
-    // Inviamo:
-    // 1. gli articoli
-    // 2. la domanda dell'utente
-    // al modello AI per creare il riassunto
+    // Inviamo gli articoli, la richiesta dell'utente
+    // e la cronologia della conversazione al modello AI
+    // per generare il riassunto
     const summary = await generateSummary(formattedArticles, message, history);
 
     // Salva la conversazione nel database

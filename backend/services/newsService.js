@@ -1,6 +1,6 @@
 const newsApi = require("../config/axios");
 
-// Recupera gli articoli dalla API giornalistica
+// Recupera gli articoli dal servizio NewsData
 const getNews = async (query) => {
   try {
     const response = await newsApi.get("/latest", {
@@ -16,6 +16,7 @@ const getNews = async (query) => {
       },
     });
 
+    // Restituiamo solamente l'elenco degli articoli
     return response.data.results;
   } catch (error) {
     if (error.response?.status === 401) {

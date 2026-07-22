@@ -31,7 +31,7 @@ const generateSummary = async (articles, userMessage, history) => {
       // Modello AI utilizzato per generare il testo
       model: "llama-3.3-70b-versatile",
 
-      // La proprietà messages contiene la conversazione inviata al modello
+      // La proprietà messages definisce il contesto completo inviato al modello
       messages: [
         // Definisce il comportamento del modello
         {
@@ -40,7 +40,7 @@ const generateSummary = async (articles, userMessage, history) => {
         },
 
         // Inserisce la cronologia della conversazione
-        //Lo spread operator (...) serve a inserire tutti gli elementi di un array dentro un altro array.
+        // Lo spread operator (...) serve a inserire tutti gli elementi di un array dentro un altro array.
         ...conversationHistory,
 
         // Nuova richiesta dell'utente
@@ -65,9 +65,23 @@ ${articles}
     // ci interessa solamente il testo generato dall'AI
     return response.choices[0].message.content;
   } catch (error) {
-    const err = new Error("TEST ERRORE GROQ");
+    console.error("Errore Groq:", error);
 
-    err.status = 500;
+    if (error.status === 401) {
+      const err = new Error(
+        "La chiave API dell'intelligenza artificiale non è valida.",
+      );
+
+      err.status = 401;
+
+      throw err;
+    }
+
+    const err = new Error(
+      "Servizio di intelligenza artificiale momentaneamente non disponibile.",
+    );
+
+    err.status = 503;
 
     throw err;
   }

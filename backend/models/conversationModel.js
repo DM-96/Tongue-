@@ -7,7 +7,7 @@ const saveConversation = async (message, response) => {
         (message, response)
         VALUES (?, ?)
     `;
-
+  // Eseguiamo la query passando i valori in modo parametrizzato
   await db.execute(sql, [message, response]);
 };
 

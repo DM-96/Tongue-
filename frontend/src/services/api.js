@@ -16,6 +16,8 @@ api.interceptors.response.use(
   (error) => {
     console.error("Errore API:", error.response);
 
+    // Se il backend restituisce un messaggio personalizzato,
+    // lo utilizziamo per mostrarlo all'utente
     if (error.response?.data?.message) {
       error.userMessage = error.response.data.message;
     } else {

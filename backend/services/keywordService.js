@@ -3,6 +3,8 @@ const groq = require("../config/groq");
 // Estrae la parola chiave principale dalla richiesta dell'utente
 const extractKeyword = async (userMessage) => {
   try {
+    // Inviamo la richiesta al modello AI
+    // per ottenere la keyword principale
     const response = await groq.chat.completions.create({
       model: "llama-3.3-70b-versatile",
 

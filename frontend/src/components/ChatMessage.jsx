@@ -15,7 +15,6 @@ function ChatMessage({ messages }) {
           key={index}
           className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md"
         >
-          <div ref={bottomRef}></div>
           {/* Messaggio utente */}
           <div className="mb-5">
             <p className="mb-1 text-sm font-semibold text-blue-600">👤 Tu</p>
@@ -35,6 +34,7 @@ function ChatMessage({ messages }) {
           </div>
         </div>
       ))}
+      <div ref={bottomRef}></div>
     </div>
   );
 }

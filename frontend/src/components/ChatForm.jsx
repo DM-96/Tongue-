@@ -10,6 +10,7 @@ function ChatForm({ setMessages }) {
 
   const [error, setError] = useState("");
 
+  // Invia la richiesta al backend e aggiorna la conversazione
   const handleSubmit = async () => {
     try {
       setLoading(true);
@@ -35,7 +36,7 @@ function ChatForm({ setMessages }) {
     } catch (error) {
       console.error(error);
 
-      setError(error.userMessage);
+      setError(error.message);
     } finally {
       setLoading(false);
     }
